@@ -1,10 +1,12 @@
 const new$ = document.createElement.bind(document)
 const nav = document.querySelector('nav')
+const audios = document.querySelector('.audios')
 fetch('frenchaudios.json')
     .then(res => res.json())
     .then(json => renderAudios(json))
     .then(() => {
         document.querySelector('.loader').style.visibility = "hidden"
+
     })
 async function renderAudios(json) {
     for (let chapter in json) {
@@ -16,7 +18,7 @@ async function renderAudios(json) {
         const header = new$('h2')
         header.textContent = chapter
         header.id = anchor
-        document.querySelector('.audios').appendChild(header)
+        audios.appendChild(header)
         json[chapter].forEach(({ href, title }) => {
             const wrapper = new$('div')
             wrapper.classList.add('audiowrapper')
@@ -28,8 +30,17 @@ async function renderAudios(json) {
             audio.setAttribute('controls', '')
             audio.setAttribute('preload', 'none')
             wrapper.appendChild(audio)
-            document.querySelector('.audios').appendChild(wrapper)
+            audios.appendChild(wrapper)
         })
-        await new Promise(accept=>requestAnimationFrame(()=>requestAnimationFrame(accept)))
+        await new Promise(
+            accept => requestAnimationFrame(() =>
+                requestAnimationFrame(() =>
+                    requestAnimationFrame(() => {
+                        accept()
+                        requestAnimationFrame(() => null)
+                    })
+                )
+            )
+        )
     }
 }

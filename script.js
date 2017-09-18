@@ -1,6 +1,8 @@
 const new$ = document.createElement.bind(document)
 const nav = document.querySelector('nav')
-fetch('frenchaudios.json').then(res => res.json()).then(json => renderAudios(json))
+fetch('frenchaudios.json').then(res => res.json()).then(json => renderAudios(json)).then(()=>{
+    document.getElementById('loading').style.display="none"
+})
 function renderAudios(json) {
     for (let chapter in json) {
         const anchor = chapter.split(' ').slice(0, 2).join(' ')

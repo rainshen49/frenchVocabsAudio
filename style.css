@@ -22,7 +22,7 @@ nav{
 }
 nav:hover{
     height: auto;
-    max-height: 90%;
+    max-height: 40%;
 }
 nav a{
     margin: 0 auto;

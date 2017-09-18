@@ -4,9 +4,9 @@ fetch('frenchaudios.json')
     .then(res => res.json())
     .then(json => renderAudios(json))
     .then(() => {
-        document.getElementById('loading').style.display = "none"
+        document.querySelector('.loader').style.visibility = "hidden"
     })
-function renderAudios(json) {
+async function renderAudios(json) {
     for (let chapter in json) {
         const anchor = chapter.split(' ').slice(0, 2).join(' ')
         const link = new$('a')
@@ -30,5 +30,6 @@ function renderAudios(json) {
             wrapper.appendChild(audio)
             document.querySelector('.audios').appendChild(wrapper)
         })
+        await new Promise(accept=>requestAnimationFrame(()=>requestAnimationFrame(accept)))
     }
 }

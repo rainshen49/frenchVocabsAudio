@@ -34,12 +34,12 @@ h1{
 h2{
     margin: 0.5rem;
 }
-#loading{
-    transform: translateX(-50%);
-    margin-left: 50%;
-    height: 2rem;
-    widows: 2rem;
+
+.loader {
+    width:100%;
+    text-align: center;
 }
+
 .audios{
     padding: 1.5rem 0 0 0;
 }

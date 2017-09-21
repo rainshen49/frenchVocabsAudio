@@ -1,12 +1,12 @@
 const new$ = document.createElement.bind(document)
 const nav = document.querySelector('nav')
 const audios = document.querySelector('.audios')
+const initial = location.hash === "" ? "Chapitre Préliminaire" : location.hash.slice(1)
 fetch('frenchaudios.json')
     .then(res => res.json())
     .then(json => renderAudios(json))
     .then(() => {
-        document.querySelector('.loader').style.visibility = "hidden"
-
+        document.querySelector('.loaderwrap').classList.add("hidden")
     })
 async function renderAudios(json) {
     for (let chapter in json) {
@@ -15,10 +15,29 @@ async function renderAudios(json) {
         link.href = "#" + anchor
         link.textContent = anchor
         nav.appendChild(link)
+
+        const chapterdiv = new$('div')
         const header = new$('h2')
+        let loaded = false
         header.textContent = chapter
         header.id = anchor
-        audios.appendChild(header)
+        chapterdiv.appendChild(header)
+
+        link.onclick = () => {
+            // load it onto the dom it not yet
+            if (!loaded) {
+                audios.appendChild(chapterdiv)
+                loaded = true
+            }
+            chapterdiv.classList.remove("hidden")
+            header.focus()
+        }
+        if (anchor !== initial) {
+            chapterdiv.classList.add("hidden")
+        } else {
+            audios.appendChild(chapterdiv)
+        }
+
         json[chapter].forEach(({ href, title }) => {
             const wrapper = new$('div')
             wrapper.classList.add('audiowrapper')
@@ -30,16 +49,15 @@ async function renderAudios(json) {
             audio.setAttribute('controls', '')
             audio.setAttribute('preload', 'none')
             wrapper.appendChild(audio)
-            audios.appendChild(wrapper)
+            chapterdiv.appendChild(wrapper)
         })
+
         await new Promise(
+            // keeps the loading ring spinning
             accept => requestAnimationFrame(() =>
-                requestAnimationFrame(() =>
-                    requestAnimationFrame(() => {
-                        accept()
-                        requestAnimationFrame(() => null)
-                    })
-                )
+                requestAnimationFrame(() => {
+                    accept()
+                })
             )
         )
     }

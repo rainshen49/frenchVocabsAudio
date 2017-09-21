@@ -44,6 +44,10 @@ nav:hover a:first-child{
 nav:hover a{
     visibility: visible;
 }
+
+nav a:active{
+    cursor: wait;
+}
 h1{
     text-align: center;
 }
@@ -55,6 +59,16 @@ h2{
     width:100%;
     text-align: center;
 } */
+.loaderwrap{
+    box-shadow: 0 0 1rem 0.1rem darkgray;
+    background-color: darkgray;
+    border-radius: 1rem;
+    padding: 1rem;    
+    left: calc(50% - 1.5rem);
+    top: calc(50% - 1.5rem);
+    position: fixed;
+    z-index: 1;
+}
 .loader {
     border: 0.3rem solid #f3f3f3; /* Light grey */
     border-top: 0.3rem solid #3498db; /* Blue */
@@ -62,7 +76,9 @@ h2{
     width: 2rem;
     height: 2rem;
     animation: spin 2s ease infinite;
-    margin-left: calc(50% - 1rem);
+}
+.hidden{
+    display: none;
 }
 
 @keyframes spin {

@@ -47,7 +47,7 @@ async function renderAudios(json) {
             const audio = new$('audio')
             audio.src = href
             audio.setAttribute('controls', '')
-            audio.setAttribute('preload', 'none')
+            // audio.setAttribute('preload', 'none')
 
             if (prevaud) {
                 prevaud.addEventListener('ended', () => audio.play())

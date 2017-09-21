@@ -4,7 +4,7 @@ The audios of the official eTextbook of Chez Nous is so hard to use. I redesigne
 # Features
 - Table of Contents for fast navigation
 - Mobile friendly
+- pagination
 
 # Todo
-- Auto continue to the next episode / playlist
-- pagination
+- play speed adjust

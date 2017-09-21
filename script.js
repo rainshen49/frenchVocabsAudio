@@ -30,7 +30,7 @@ async function renderAudios(json) {
                 loaded = true
             }
             chapterdiv.classList.remove("hidden")
-            header.focus()
+            chapterdiv.click()
         }
         if (anchor !== initial) {
             chapterdiv.classList.add("hidden")

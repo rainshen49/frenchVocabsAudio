@@ -19,6 +19,7 @@ nav{
     background-color: lightgray;
     transition: height 0.6s ease;
     will-change: height;
+    box-shadow: 0 0 1rem 0.2rem darkgray;    
 }
 nav a{
     margin: 0 auto;
@@ -37,6 +38,7 @@ nav a:first-child{
 nav:hover{
     height: auto;
     max-height: 40%;
+    box-shadow: 0 0 1rem 0.3rem darkgray;    
 }
 nav:hover a:first-child{
     visibility: hidden;
